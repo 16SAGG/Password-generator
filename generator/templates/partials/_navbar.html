@@ -14,7 +14,7 @@
             <a class="nav-link {% if request.path == '/saves' %} active {% endif %}" href="{% url 'saves'%}">Saves</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if request.path == '/about' %} active {% endif %}" href="#">About</a>
+            <a class="nav-link {% if request.path == '/about' %} active {% endif %}" href="{% url 'about'%}">About</a>
           </li>
         </ul>
       </div>

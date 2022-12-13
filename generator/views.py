@@ -65,3 +65,6 @@ def deletePasswords(request, id):
     myPassword = Password.objects.get(id = id)
     myPassword.delete()
     return HttpResponseRedirect(reverse('saves'))
+
+def about(request):
+    return render(request, 'about.html', {})
