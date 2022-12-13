@@ -1,4 +1,8 @@
+from django.http import HttpResponseRedirect
+from django.contrib import messages
 from django.shortcuts import render
+from .models import Password
+from django.urls import reverse
 import random
 
 def home(request):
@@ -38,3 +42,26 @@ def password(request):
     }
 
     return render(request, 'password.html', ctx)
+
+def passwordRecord(request):
+    passName = request.GET.get('passwordName')
+    passContent = request.GET.get('password')
+    if passName:
+        newPass = Password(name = passName, password = passContent)
+        newPass.save()
+        messages.success(request, 'Your password has been saved')
+    else:
+        messages.error(request, "Your password don't have a name")
+    return HttpResponseRedirect(reverse('home'))
+
+def showPasswords(request):
+    myPasswords = Password.objects.all()
+    ctx = {
+        'myPasswords': myPasswords,
+    }
+    return render(request, 'saves.html', ctx)
+
+def deletePasswords(request, id):
+    myPassword = Password.objects.get(id = id)
+    myPassword.delete()
+    return HttpResponseRedirect(reverse('saves'))

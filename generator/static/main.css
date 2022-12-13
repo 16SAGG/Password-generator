@@ -1,0 +1,14 @@
+.bg-mid-dark {
+    background-color: #121212;
+}
+
+.show {
+    display: block;
+}
+.toast {
+    margin-bottom: 25px;
+}
+
+.hide {
+    display: none;
+}
